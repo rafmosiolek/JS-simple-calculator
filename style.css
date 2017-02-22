@@ -1,0 +1,27 @@
+html, body {
+    background-color: #f39c12;
+    font-family: "Roboto";
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+
+.wrapper {
+    justify-content: center;
+    align-items: center;
+}
+
+.display-area {
+    text-align: center;
+}
+
+.display-area table {
+    width: 30%;
+    border: 4px solid #ecf0f1;
+}
+
+.display-area table tr {
+    column-span: 2;
+    text-align: center;
+}
