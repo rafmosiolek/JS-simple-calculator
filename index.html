@@ -3,128 +3,80 @@
 <head>
   <title>Simple calculator</title>
   <link rel="stylesheet" type="text/css" href="style.css">
- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
 </head>
 <body>
-
-
-  <div class="display-area">  <!-- display area -->
-    <table>
+<div id="header"></div>
+<div class="calculator"> <!-- OUTER BORDERS OF CALCULATOR -->
+    <div class="top-panel"> <!-- TOP PANEL -->
+      <h3>A simple JavaScript Calculator</h3>
+      <input type="text" maxlength="40" size="30" name="Display">
+    </div> <!-- END TOP PANEL -->
+    <div class="bottom-panel">
+      <div class="left-panel">
+       <table>
         <tr>
-          <td>Display Area</td>
+          <td><input class="button" type="button" value="7"></td>
+          <td><input class="button" type="button" value="8"></td>
+          <td><input class="button" type="button" value="9"></td>
         </tr>
         <tr>
-          <td>Numeric Buttons</td>
-          <td>Function Buttons</td>
+          <td><input class="button" type="button" value="4"></td>
+          <td><input class="button" type="button" value="5"></td>
+          <td><input class="button" type="button" value="6"></td>
         </tr>
-    </table>
-  </div>  <!-- /end display area -->
-
-
-  <form name="Calculator">
-    <table> <!--OUTER BORDER OF CALCULATOR, PANELS-->
-      <tr>  <!-- TOP PANEL -->
-        <td>A simple JavaScript Calculator <br />
-        <input type="text" maxlength="40" size="30" name="Display">
-        </td>
-      </tr> <!-- END TOP PANEL -->
-      <tr>
-        <td>  <!-- LEFT PANEL -->
-          <table>
-            <tr>
-              <td><input class="button" type="button" value="7"></td>
-              <td><input class="button" type="button" value="8"></td>
-              <td><input class="button" type="button" value="9"></td>
-            </tr>
-            <tr>
-              <td><input class="button" type="button" value="4"></td>
-              <td><input class="button" type="button" value="5"></td>
-              <td><input class="button" type="button" value="6"></td>
-            </tr>
-            <tr>
-              <td><input class="button" type="button" value="1"></td>
-              <td><input class="button" type="button" value="2"></td>
-              <td><input class="button" type="button" value="3"></td>
-            </tr>
-            <tr>
-              <td><input class="button" type="button" value="+/-"></td>
-              <td><input class="button" type="button" value="0"></td>
-              <td><input class="button" type="button" value="."></td>
-            </tr>
-          </table>
-        </td> <!-- END LEFT PANEL -->
-        <td>  <!-- RIGHT PANEL -->
-          <table>
-            <tr>
-              <td><input type="button" value="C"></td>
-              <td><input type="button" value="AC"></td>
-            </tr>
-            <tr>
-              <td><input type="button" value="*"></td>
-              <td><input type="button" value="/"></td>
-            </tr>
-            <tr>
-              <td><input type="button" value="+"></td>
-              <td><input type="button" value="-"></td>
-            </tr>
-            <tr>
-              <td><input type="button" value="="></td>
-              <td><input type="button" value="EXP"></td>
-            </tr>
-          </table>
-        </td> <!-- END RIGHT PANEL -->
-      </tr>
-    </table>
-  </form>
-
-
-
-
-
-
-
-
-
-<!--
-  <div align="center">
-    <table width="30%" border="4">
-      <tr><td colspan="2" align="center">Display Area</td></tr>
-      <tr><td>Numeric Buttons</td>
-        <td>Function Buttons</td>
-      </tr></table></div>
-      <FORM name="Calculator">
-       <table border="4">  
-        <tr> 
-          <td colspan="2">A Simple JavaScript Calculator<br>
-            <input type="text" maxlength="40" size="30" name="Display">
-          </td>
-        </tr>  
         <tr>
-          <td> 
-            <table>
-             <tr>
-               <td><input type="button" value="7"></td>
-               <td><input type="button" value="8"></td>
-               <td><input type="button" value="9"></td>
-             </tr>
-             <tr>
-               {all other rows of digits are similar..}
-             </tr>
-           </table>
-         </td>
-         <td> 
-          <table>
-           {right panel is similar in overall structure to left}
-         </table>
-       </td>     </tr></table>
-   </FORM>
+          <td><input class="button" type="button" value="1"></td>
+          <td><input class="button" type="button" value="2"></td>
+          <td><input class="button" type="button" value="3"></td>
+        </tr>
+        <tr>
+          <td><input class="button" type="button" value="+/-"></td>
+          <td><input class="button" type="button" value="0"></td>
+          <td><input class="button" type="button" value="."></td>
+        </tr>
+      </table>
+    </div> <!-- END LEFT PANEL -->
+    <div class="right-panel">
+      <table>
+        <tr>
+          <td><input class="button" type="button" value="C"></td>
+          <td><input class="button" type="button" value="AC"></td>
+        </tr>
+        <tr>
+          <td><input class="button" type="button" value="*"></td>
+          <td><input class="button" type="button" value="/"></td>
+        </tr>
+        <tr>
+          <td><input class="button" type="button" value="+"></td>
+          <td><input class="button" type="button" value="-"></td>
+        </tr>
+        <tr>
+          <td><input class="button" type="button" value="="></td>
+          <td><input class="button" type="button" value="EXP"></td>
+        </tr>
+      </table>
+    </div> <!-- END RIGHT PANEL -->
+  </div>
+</div> <!-- END CALCULATOR -->
 
--->
 
 
 
 
 
-  <script type="text/javascript" src="script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="script.js"></script>
 </body>
 </html>
