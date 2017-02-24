@@ -81,3 +81,14 @@ function PlusMinus () {
     document.Calculator.Display.value = Current;
 };
 
+function Clear() {          // clear entry [C]
+    Current = "0";
+    document.Calculator.Display.value = Current;
+};
+
+function AllClear() {       // Clear all entries [AC]
+    Current = "0";
+    Operation = 0;          // clear operation
+    Memory = "0";           // clear memory
+    document.Calculator.Display.value = Current;
+};
