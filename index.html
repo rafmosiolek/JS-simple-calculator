@@ -10,7 +10,7 @@
 <div class="calculator"> <!-- OUTER BORDERS OF CALCULATOR -->
     <div class="top-panel"> <!-- TOP PANEL -->
       <h3>A simple JavaScript Calculator</h3>
-      <input type="text" maxlength="40" size="30" name="Display">
+      <input type="text" maxlength="40" size="30" name="Display" onchange="FixCurrent()">
     </div> <!-- END TOP PANEL -->
     <div class="bottom-panel">
       <div class="left-panel">
@@ -31,7 +31,7 @@
           <td><input class="button" type="button" value="3" onclick="AddDigit('3')"></td>
         </tr>
         <tr>
-          <td><input class="button" type="button" value="+/-" onclick=""></td>
+          <td><input class="button" type="button" value="+/-" onclick="PlusMinus()"></td>
           <td><input class="button" type="button" value="0" onclick="AddDigit('0')"></td>
           <td><input class="button" type="button" value="." onclick="Dot()"></td>
         </tr>
