@@ -30,3 +30,11 @@ function Dot () {
     };
     document.Calculator.Display.value = Current;
 }
+
+function DoExponent() {     // DoExponent function handles the exponentation 10^(an integer)
+    if (Current.indexOf("e") === -1) {
+        Current = Current + "e0";
+        document.Calculator.Display.value = Current;
+    };
+    
+}
