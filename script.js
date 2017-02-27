@@ -1,6 +1,3 @@
-
-
-
 // Global variables and constants
 
 Memory  = "0";      // initialise memory variable
@@ -79,14 +76,14 @@ document.Calculator.Display.value = Current;
 function Clear() {          // clear entry [C]
     Current = "0";
     document.Calculator.Display.value = Current;
-};
+}
 
 function AllClear() {       // Clear all entries [AC]
     Current = "0";
     Operation = 0;          // clear operation
     Memory = "0";           // clear memory
     document.Calculator.Display.value = Current;
-};
+}
 
 function Operate(op) {          // store operation, e.g. + * /
     if (Operation != 0) {Calculate();} // press "=" if pending operation!
@@ -99,7 +96,7 @@ function Operate(op) {          // store operation, e.g. + * /
     Memory = Current;                               // store value
     Current = "";                                       
     document.Calculator.Display.value = Current;
-};
+}
 
 function Calculate()            //PERFORM CALCULATION (= button)
 { 
@@ -124,7 +121,7 @@ if (Operation === 4) { Current = eval(Memory) - eval(Current); };
 };
 document.Calculator.Display.value = Current;
   // NOTE: if no operation, nothing changes, Current is left the same!
-};
+}
 
 
 function FixCurrent() {         // dealing with stuff typed into the display area
@@ -134,4 +131,4 @@ function FixCurrent() {         // dealing with stuff typed into the display are
         Current = "I don't understand!";
     };
     document.Calculator.Display.value = Current;
-};
+}
