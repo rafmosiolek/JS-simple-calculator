@@ -92,3 +92,22 @@ function AllClear() {       // Clear all entries [AC]
     Memory = "0";           // clear memory
     document.Calculator.Display.value = Current;
 };
+
+
+
+
+
+
+
+
+
+
+function FixCurrent()
+ {
+  Current = document.Calculator.Display.value;
+  Current = "" + parseFloat(Current);
+  if (Current.indexOf("NaN") != -1)
+    { Current = "Aargh! I don't understand";
+    };
+  document.Calculator.Display.value = Current;
+ }
