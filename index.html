@@ -6,54 +6,55 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
 </head>
 <body>
-<div id="header"></div>
-<div class="calculator"> <!-- OUTER BORDERS OF CALCULATOR -->
+  <div id="header"></div>
+  <div class="calculator"> <!-- OUTER BORDERS OF CALCULATOR -->
     <div class="top-panel"> <!-- TOP PANEL -->
       <h3>A simple JavaScript Calculator</h3>
-      <input type="text" maxlength="40" size="30" name="Display" onchange="FixCurrent()">
+      <input type="text" maxlength="40" size="25" name="Display" onChange="FixCurrent()">
+
     </div> <!-- END TOP PANEL -->
     <div class="bottom-panel">
       <div class="left-panel">
        <table>
         <tr>
-          <td><input class="button" type="button" value="7" onclick="AddDigit('7')"></td>
-          <td><input class="button" type="button" value="8" onclick="AddDigit('8')"></td>
-          <td><input class="button" type="button" value="9" onclick="AddDigit('9')"></td>
+        <td><input class="button" type="button" value="7" onClick="AddDigit('7')"></td>
+          <td><input class="button" type="button" value="8" onClick="AddDigit('8')"></td>
+          <td><input class="button" type="button" value="9" onClick="AddDigit('9')"></td>
         </tr>
         <tr>
-          <td><input class="button" type="button" value="4" onclick="AddDigit('4')"></td>
-          <td><input class="button" type="button" value="5" onclick="AddDigit('5')"></td>
-          <td><input class="button" type="button" value="6" onclick="AddDigit('6')"></td>
+          <td><input class="button" type="button" value="4" onClick="AddDigit('4')"></td>
+          <td><input class="button" type="button" value="5" onClick="AddDigit('5')"></td>
+          <td><input class="button" type="button" value="6" onClick="AddDigit('6')"></td>
         </tr>
         <tr>
-          <td><input class="button" type="button" value="1" onclick="AddDigit('1')"></td>
-          <td><input class="button" type="button" value="2" onclick="AddDigit('2')"></td>
-          <td><input class="button" type="button" value="3" onclick="AddDigit('3')"></td>
+          <td><input class="button" type="button" value="1" onClick="AddDigit('1')"></td>
+          <td><input class="button" type="button" value="2" onClick="AddDigit('2')"></td>
+          <td><input class="button" type="button" value="3" onClick="AddDigit('3')"></td>
         </tr>
         <tr>
-          <td><input class="button" type="button" value="+/-" onclick="PlusMinus()"></td>
-          <td><input class="button" type="button" value="0" onclick="AddDigit('0')"></td>
-          <td><input class="button" type="button" value="." onclick="Dot()"></td>
+          <td><input class="button" type="button" value="+/-" onClick="PlusMinus()"></td>
+          <td><input class="button" type="button" value="0" onClick="AddDigit('0')"></td>
+          <td><input class="button" type="button" value="." onClick="Dot()"></td>
         </tr>
       </table>
     </div> <!-- END LEFT PANEL -->
     <div class="right-panel">
       <table>
         <tr>
-          <td><input class="button" type="button" value="C" onclick="Clear()"></td>
-          <td><input class="button" type="button" value="AC" onclick="AllClear()"></td>
+          <td><input class="button" type="button" value="C" onClick="Clear()"></td>
+          <td><input class="button" type="button" value="AC" onClick="AllClear()"></td>
         </tr>
         <tr>
-          <td><input class="button" type="button" value="*"></td>
-          <td><input class="button" type="button" value="/"></td>
+          <td><input class="button" type="button" value="*" onClick="Operate('*')"></td>
+          <td><input class="button" type="button" value="/" onClick="Operate('/')"></td>
         </tr>
         <tr>
-          <td><input class="button" type="button" value="+"></td>
-          <td><input class="button" type="button" value="-"></td>
+          <td><input class="button" type="button" value="+" onClick="Operate('+')"></td>
+          <td><input class="button" type="button" value="-" onClick="Operate('-')"></td>
         </tr>
         <tr>
-          <td><input class="button" type="button" value="="></td>
-          <td><input class="button" type="button" value="EXP"></td>
+          <td><input class="button" type="button" value="=" onClick="Calculate()"></td>
+          <td><input class="button" type="button" value="EXP" onClick="DoExponent()"></td>
         </tr>
       </table>
     </div> <!-- END RIGHT PANEL -->

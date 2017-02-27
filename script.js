@@ -22,7 +22,7 @@ function AddDigit(dig)          //ADD A DIGIT TO DISPLAY (keep as 'Current')
     { Current = "Hint! Press 'AC'";  //Help out, if error present.
 };
 if (Current.indexOf("e0") != -1)
-   { var epos = Current.indexOf("e");
+ { var epos = Current.indexOf("e");
 Current = Current.substring(0,epos+1) + Current.substring(epos+2);
 };
 if (Current.length > MAXLENGTH)
@@ -36,7 +36,7 @@ function Dot () {       // put in "." if appropriate
     if (Current.length === 0) {     // no leading ".", use "0."
         Current = "0.";
 } else {
- if (Current.indexOf(".") === -1)
+   if (Current.indexOf(".") === -1)
     { Current = Current + ".";};
 };
 document.Calculator.Display.value = Current;
@@ -87,6 +87,8 @@ function AllClear() {       // Clear all entries [AC]
 };
 
 function Operate(op) {          // store operation, e.g. + * /
+    if (Operation != 0) {Calculate();} // press "=" if pending operation!
+
     if (op.indexOf("*") > -1) {Operation = 1;};     //codes for *
     if (op.indexOf("/") > -1) {Operation = 2;};     // slash (divide)
     if (op.indexOf("+") > -1) {Operation = 3;};     // sum
@@ -97,15 +99,31 @@ function Operate(op) {          // store operation, e.g. + * /
     document.Calculator.Display.value = Current;
 };
 
-function Calculate() {              // perform calculation ([=] button)
-    if (Operation === 1) {Current = eval(Memory) * eval(Current);};
-    if (Operation === 2) {Current = eval(Memory) / eval(Current);};
-    if (Operation === 3) {Current = eval(Memory) + eval(Current);};
-    if (Operation === 4) {Current = eval(Memory) - eval(Current);};
-    Operation = 0;  // clear operation
-    Memory = "0";   // clear memory
-    document.Calculator.Display.value = Current;
+function Calculate()            //PERFORM CALCULATION (= button)
+{ 
+  if (Operation === 1) { Current = eval(Memory) * eval(Current); };
+  if (Operation === 2)
+    { if (eval(Current) != 0)
+      { Current = eval(Memory) / eval(Current)
+      } else
+      { Current = "Divide by zero!"; //don't allow over MAXLENGTH digits before "." ???
+  }
 };
+if (Operation === 3) { Current = eval(Memory) + eval(Current); };
+if (Operation === 4) { Current = eval(Memory) - eval(Current); };
+  Operation = 0;                //clear operation
+  Memory = "0";                  //clear memory
+  Current = Current + "";       //FORCE A STRING!
+  if (Current.indexOf("Infinity") != -1)        //eg "1e320" * 1
+    { Current = "Value too big!";
+};
+  if (Current.indexOf("NaN") != -1)        //eg "1e320" / "1e320"
+    { Current = "I don't understand";
+};
+document.Calculator.Display.value = Current;
+  // NOTE: if no operation, nothing changes, Current is left the same!
+};
+
 
 function FixCurrent() {         // dealing with stuff typed into the display area
     Current = document.Calculator.Display.value;
