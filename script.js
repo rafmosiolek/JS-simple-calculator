@@ -7,18 +7,6 @@ Operation = 0;      // Records code for eg * / etc.
 MAXLENGTH = 30;     // maximum number of digits before decimal!
 
 
-// function AddDigit(dig) {        // ADD A DIGIT TO DISPLAY (kept as "Current")
-//     if (Current.length > MAXLENGTH) {
-//         Current = "Too long!";      // limit length
-//     } else {
-//         if (eval(Current) === 0) && (Current.indexOf(".") === -1) {
-//             Current = dig;
-//         } else {
-//             Current = Current + dig;
-//         };
-//     };
-//     document.Calculator.Display.value = Current;
-// }
 
 
 function AddDigit(dig)          //ADD A DIGIT TO DISPLAY (keep as 'Current')
@@ -93,21 +81,32 @@ function AllClear() {       // Clear all entries [AC]
     document.Calculator.Display.value = Current;
 };
 
+function Operate(op) {          // store operation, e.g. + * /
+    if (op.indexOf("*") > -1) {Operation = 1;};     //codes for *
+    if (op.indexOf("/") > -1) {Operation = 2;};     // slash (divide)
+    if (op.indexOf("+") > -1) {Operation = 3;};     // sum
+    if (op.indexOf("-") > -1) {Operation = 4;};     // difference
 
+    Memory = Current;                               // store value
+    Current = "";                                       
+    document.Calculator.Display.value = Current;
+};
 
+function Calculate() {              // perform calculation ([=] button)
+    if (Operation === 1) {Current = eval(Memory) * eval(Current);};
+    if (Operation === 2) {Current = eval(Memory) / eval(Current);};
+    if (Operation === 3) {Current = eval(Memory) + eval(Current);};
+    if (Operation === 4) {Current = eval(Memory) - eval(Current);};
+    Operation = 0;  // clear operation
+    Memory = "0";   // clear memory
+    document.Calculator.Display.value = Current;
+};
 
-
-
-
-
-
-
-function FixCurrent()
- {
-  Current = document.Calculator.Display.value;
-  Current = "" + parseFloat(Current);
-  if (Current.indexOf("NaN") != -1)
-    { Current = "Aargh! I don't understand";
+function FixCurrent() {         // dealing with stuff typed into the display area
+    Current = document.Calculator.Display.value;
+    Current = "" + parseFloat(Current);
+    if (Current.indexOf("NaN") != -1) {
+        Current = "I don't understand!";
     };
-  document.Calculator.Display.value = Current;
- }
+    document.Calculator.Display.value = Current;
+};
