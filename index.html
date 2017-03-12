@@ -10,16 +10,16 @@
   <div class="calculator"> <!-- OUTER BORDERS OF CALCULATOR -->
     <div class="top-panel"> <!-- TOP PANEL -->
       <h3>A simple JavaScript Calculator</h3>
-      <input type="text" maxlength="40" size="25" name="Display" onChange="FixCurrent()">
+      <input type="text" maxlength="40" size="25" name="Display" onchange="return fixCurrent()">
 
     </div> <!-- END TOP PANEL -->
     <div class="bottom-panel">
       <div class="left-panel">
        <table>
         <tr>
-        <td><input class="button" type="button" value="7" onClick="AddDigit('7')"></td>
-          <td><input class="button" type="button" value="8" onClick="AddDigit('8')"></td>
-          <td><input class="button" type="button" value="9" onClick="AddDigit('9')"></td>
+        <td><input class="button" type="button" value="7" onclick="addDigit('7')"></td>
+          <td><input class="button" type="button" value="8" onclick="return addDigit('8')"></td>
+          <td><input class="button" type="button" value="9" onclick="return addDigit('9')"></td>
         </tr>
         <tr>
           <td><input class="button" type="button" value="4" onClick="AddDigit('4')"></td>
