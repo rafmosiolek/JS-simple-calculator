@@ -1,142 +1,86 @@
 // Global variables
 
-var memory  = "0";      // initialise memory variable
-var current = "0";      //   and value of Display ("current" value)
-var operation = 0;      // Records code for eg * / etc.
-var maxlength = 30;     // maximum number of digits before decimal!
+var keys = document.querySelectorAll('#calculator span');
+var operators = ['+', '-', 'x', '÷'];
+var decimalAdded = false;
 
-var display = document.getElementByClass('.display');
-var key = document.querySelectorAll("input[value=");
-
-
-
-function addDigit(dig) {      //ADD A DIGIT TO DISPLAY (keep as 'current')
-
-  current = current.toLowerCase(); //FORCE LOWER CASE
-
-  if (current.indexOf("!") === -1) {  //if not already an error
+// Add onclick event to all the keys and perform operations
+for(var i = 0; i < keys.length; i++) {
+  keys[i].onclick = function(e) {
+    // Get the input and button values
+    var input = document.querySelector('.screen');
+    var inputVal = input.innerHTML;
+    var btnVal = this.innerHTML;
     
-    if ((eval(current) === 0) && (current.indexOf(".") === -1)){
-      current = dig;
-    } else {
-    current = current + dig;
-    }   
-  
-  } else {
-    current = "Hint! Press 'AC'";  //Help out, if error present.
-  }
-
-  if (current.indexOf("e0") != -1) {
-    var epos = current.indexOf("e");
-    current = current.substring(0,epos+1) + current.substring(epos+2);
-  }
-  
-  if (current.length > maxlength) {
-    current = "Aargh! Too long"; //don't allow over MAXLENGTH digits before "." ???
-  }
-
-  display.value = current;
-}
-
-
-function dot () {       // put in "." if appropriate
-    if (Current.length === 0) {     // no leading ".", use "0."
-        Current = "0.";
-} else {
-   if (Current.indexOf(".") === -1)
-    { Current = Current + ".";}
-}
-document.Calculator.Display.value = Current;
-}
-
-
-function doExponent() {     // DoExponent function handles the exponentation 10^(an integer)
-    if (Current.indexOf("e") === -1) {
-        Current = Current + "e0";
-        document.Calculator.Display.value = Current;
+    // Now, just append the key values (btnValue) to the input string and finally use javascript's eval function to get the result
+    // If clear key is pressed, erase everything
+    if(btnVal == 'CA') {
+      input.innerHTML = '';
+      decimalAdded = false;
     }
-
-}
-
-function plusMinus()
-{
-  if  (Current.indexOf("e") != -1)
-    { var epos = Current.indexOf("e-");
-if (epos != -1)
-         { Current = Current.substring(0,1+epos) + Current.substring(2+epos); //clip out -ve exponent 
-         } else
-         { epos = Current.indexOf("e");
-           Current = Current.substring(0,1+epos) + "-" + Current.substring(1+epos); //insert -ve exponent
-       };
-   } else
-   {  if ( Current.indexOf("-") === 0 )
-   { Current = Current.substring(1);
-   } else
-   { Current = "-" + Current;
-}
-if (    (eval(Current) === 0)
-    && (Current.indexOf(".") === -1 )
-    ) { Current = "0"; };
-}
-document.Calculator.Display.value = Current;
-}
-
-function clear() {          // clear entry [C]
-    Current = "0";
-    document.Calculator.Display.value = Current;
-}
-
-function allClear() {       // Clear all entries [AC]
-    Current = "0";
-    Operation = 0;          // clear operation
-    Memory = "0";           // clear memory
-    document.Calculator.Display.value = Current;
-}
-
-function operate(op) {          // store operation, e.g. + * /
-    if (Operation != 0) {Calculate();} // press "=" if pending operation!
-
-    if (op.indexOf("*") > -1) {Operation = 1;};     //codes for *
-    if (op.indexOf("/") > -1) {Operation = 2;};     // slash (divide)
-    if (op.indexOf("+") > -1) {Operation = 3;};     // sum
-    if (op.indexOf("-") > -1) {Operation = 4;};     // difference
-
-    Memory = Current;                               // store value
-    Current = "";                                       
-    document.Calculator.Display.value = Current;
-}
-
-function calculate()            //PERFORM CALCULATION (= button)
-{ 
-  if (Operation === 1) { Current = eval(Memory) * eval(Current); };
-  if (Operation === 2)
-    { if (eval(Current) != 0)
-      { Current = eval(Memory) / eval(Current)
-      } else
-      { Current = "Divide by zero!"; //don't allow over MAXLENGTH digits before "." ???
-  }
-};
-if (Operation === 3) { Current = eval(Memory) + eval(Current); };
-if (Operation === 4) { Current = eval(Memory) - eval(Current); };
-  Operation = 0;                //clear operation
-  Memory = "0";                  //clear memory
-  Current = Current + "";       //FORCE A STRING!
-  if (Current.indexOf("Infinity") != -1)        //eg "1e320" * 1
-    { Current = "Value too big!";
-}
-  if (Current.indexOf("NaN") != -1)        //eg "1e320" / "1e320"
-    { Current = "I don't understand";
-}
-document.Calculator.Display.value = Current;
-  // NOTE: if no operation, nothing changes, Current is left the same!
-}
-
-
-function fixCurrent() {         // dealing with stuff typed into the display area
-    Current = document.Calculator.Display.value;
-    Current = "" + parseFloat(Current);
-    if (Current.indexOf("NaN") != -1) {
-        Current = "I don't understand!";
+    
+    // If eval key is pressed, calculate and display the result
+    else if(btnVal == '=') {
+      var equation = inputVal;
+      var lastChar = equation[equation.length - 1];
+      
+      // Replace all instances of x and ÷ with * and / respectively. This can be done easily using regex and the 'g' tag which will replace all instances of the matched character/substring
+      equation = equation.replace(/x/g, '*').replace(/÷/g, '/');
+      
+      // Final thing left to do is checking the last character of the equation. If it's an operator or a decimal, remove it
+      if(operators.indexOf(lastChar) > -1 || lastChar == '.')
+        equation = equation.replace(/.$/, '');
+      
+      if(equation)
+        input.innerHTML = eval(equation);
+        
+      decimalAdded = false;
     }
-    document.Calculator.Display.value = Current;
+    
+    // Basic functionality of the calculator is complete. But there are some problems like 
+    // 1. No two operators should be added consecutively.
+    // 2. The equation shouldn't start from an operator except minus
+    // 3. not more than 1 decimal should be there in a number
+    
+    // We'll fix these issues using some simple checks
+    
+    // indexOf works only in IE9+
+    else if(operators.indexOf(btnVal) > -1) {
+      // Operator is clicked
+      // Get the last character from the equation
+      var lastChar = inputVal[inputVal.length - 1];
+      
+      // Only add operator if input is not empty and there is no operator at the last
+      if(inputVal != '' && operators.indexOf(lastChar) == -1) 
+        input.innerHTML += btnVal;
+      
+      // Allow minus if the string is empty
+      else if(inputVal == '' && btnVal == '-') 
+        input.innerHTML += btnVal;
+      
+      // Replace the last operator (if exists) with the newly pressed operator
+      if(operators.indexOf(lastChar) > -1 && inputVal.length > 1) {
+        // Here, '.' matches any character while $ denotes the end of string, so anything (will be an operator in this case) at the end of string will get replaced by new operator
+        input.innerHTML = inputVal.replace(/.$/, btnVal);
+      }
+      
+      decimalAdded =false;
+    }
+    
+    // Now only the decimal problem is left. We can solve it easily using a flag 'decimalAdded' which we'll set once the decimal is added and prevent more decimals to be added once it's set. It will be reset when an operator, eval or clear key is pressed.
+    else if(btnVal == '.') {
+      if(!decimalAdded) {
+        input.innerHTML += btnVal;
+        decimalAdded = true;
+      }
+    }
+    
+    // if any other key is pressed, just append it
+    else {
+      input.innerHTML += btnVal;
+    }
+    
+    // prevent page jumps
+    e.preventDefault();
+  } 
 }
