@@ -5,7 +5,8 @@ var current = "0";      //   and value of Display ("current" value)
 var operation = 0;      // Records code for eg * / etc.
 var maxlength = 30;     // maximum number of digits before decimal!
 
-
+var display = document.getElementByClass('.display');
+var 
 
 
 
@@ -34,7 +35,7 @@ function addDigit(dig) {      //ADD A DIGIT TO DISPLAY (keep as 'current')
     current = "Aargh! Too long"; //don't allow over MAXLENGTH digits before "." ???
   }
 
-  document.Calculator.Display.value = current;
+  display.value = current;
 }
 
 
