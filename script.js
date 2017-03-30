@@ -1,4 +1,4 @@
-// Global variables and constants
+// Global variables
 
 var memory  = "0";      // initialise memory variable
 var current = "0";      //   and value of Display ("current" value)
@@ -8,26 +8,33 @@ var maxlength = 30;     // maximum number of digits before decimal!
 
 
 
-function addDigit(dig)          //ADD A DIGIT TO DISPLAY (keep as 'current')
- { if (Current.indexOf("!") === -1)  //if not already an error
- { if (    (eval(Current) === 0)
-  && (Current.indexOf(".") == -1)
-  ) { Current = dig;
- } else
- { Current = Current + dig;
- }
-      Current = Current.toLowerCase(); //FORCE LOWER CASE
-  } else
-    { Current = "Hint! Press 'AC'";  //Help out, if error present.
-}
-if (Current.indexOf("e0") != -1)
- { var epos = Current.indexOf("e");
-Current = Current.substring(0,epos+1) + Current.substring(epos+2);
-}
-if (Current.length > MAXLENGTH)
-     { Current = "Aargh! Too long"; //don't allow over MAXLENGTH digits before "." ???
-}
-document.Calculator.Display.value = Current;
+
+function addDigit(dig) {      //ADD A DIGIT TO DISPLAY (keep as 'current')
+
+  current = current.toLowerCase(); //FORCE LOWER CASE
+
+  if (current.indexOf("!") === -1) {  //if not already an error
+    
+    if ((eval(current) === 0) && (current.indexOf(".") === -1)){
+      current = dig;
+    } else {
+    current = current + dig;
+    }   
+  
+  } else {
+    current = "Hint! Press 'AC'";  //Help out, if error present.
+  }
+
+  if (current.indexOf("e0") != -1) {
+    var epos = current.indexOf("e");
+    current = current.substring(0,epos+1) + current.substring(epos+2);
+  }
+  
+  if (current.length > maxlength) {
+    current = "Aargh! Too long"; //don't allow over MAXLENGTH digits before "." ???
+  }
+
+  document.Calculator.Display.value = current;
 }
 
 
