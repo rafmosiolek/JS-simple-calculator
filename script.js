@@ -6,7 +6,7 @@ var operation = 0;      // Records code for eg * / etc.
 var maxlength = 30;     // maximum number of digits before decimal!
 
 var display = document.getElementByClass('.display');
-var 
+var key = document.querySelectorAll("input[value=");
 
 
 
