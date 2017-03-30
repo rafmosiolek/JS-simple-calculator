@@ -1,14 +1,14 @@
 // Global variables and constants
 
-Memory  = "0";      // initialise memory variable
-Current = "0";      //   and value of Display ("current" value)
-Operation = 0;      // Records code for eg * / etc.
-MAXLENGTH = 30;     // maximum number of digits before decimal!
+var memory  = "0";      // initialise memory variable
+var current = "0";      //   and value of Display ("current" value)
+var operation = 0;      // Records code for eg * / etc.
+var maxlength = 30;     // maximum number of digits before decimal!
 
 
 
 
-function addDigit(dig)          //ADD A DIGIT TO DISPLAY (keep as 'Current')
+function addDigit(dig)          //ADD A DIGIT TO DISPLAY (keep as 'current')
  { if (Current.indexOf("!") === -1)  //if not already an error
  { if (    (eval(Current) === 0)
   && (Current.indexOf(".") == -1)
